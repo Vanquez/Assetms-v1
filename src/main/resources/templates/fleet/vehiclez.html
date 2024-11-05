@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content" >
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <!--                <h3 class="page-header"><i class="fa fa fa-bars"></i> Vehicles</h3>-->
+<!--                <p th:text="${message}"></p>-->
+                <ol class="breadcrumb" style="height: 80px; padding: 10px; display: flex; flex-wrap: wrap; gap: 5px;">
+                    <li style="display: inline-block; padding: 5px 15px; background-color: #e0e0e0; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                        <i class="fa fa-square-o"><a href="#" onclick="loadTabContent('/fleet/vehicles')">Vehicles</a></i>
+                    </li>
+                    <li style="display: inline-block; padding: 5px 15px; background-color: #e0e0e0; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                        <i class="fa fa-square-o"><a>Vehicle Model</a></i>
+                    </li>
+                    <li style="display: inline-block; padding: 5px 15px; background-color: #e0e0e0; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                        <i class="fa fa-square-o"></i> Vehicle Movements
+                    </li>
+                    <li style="display: inline-block; padding: 5px 15px; background-color: #e0e0e0; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                        <i class="fa fa-square-o"></i> Vehicle Maintenance
+                    </li>
+                    <li style="display: inline-block; padding: 5px 15px; background-color: #e0e0e0; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                        <i class="fa fa-square-o"></i> Fuel Management
+                    </li>
+                    <li style="display: inline-block; padding: 5px 15px; background-color: #e0e0e0; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                        <i class="fa fa-square-o"></i> Vehicle Types
+                    </li>
+                    <li style="display: inline-block; padding: 5px 15px; background-color: #e0e0e0; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                        <i class="fa fa-square-o"></i> Vehicle Status
+                    </li>
+                    <li style="display: inline-block; padding: 5px 15px; background-color: #e0e0e0; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                        <i class="fa fa-square-o"></i> Vehicle Makes
+                    </li>
+                </ol>
+            </div>
+
+
+
+        </div>
+        <!--Content of the page-->
+        <div id="tabContent">
+            <!-- This is where the tab content will load -->
+        </div>
+    </section>
+
+
+</div>
+
+<!-- Dynamic content container -->
+
+
+<th:block layout:fragment="script">
+
+    <script language="JavaScript">
+        $('document').ready(function () {
+            $('.table #photoButton').on('click', function (event) {
+                event.preventDefault();
+                var href = $(this).attr('href');
+                $('#photoModal #vehiclePhoto').attr('src', href);
+                $('#photoModal').modal();
+            })
+        })
+    </script>
+
+    <script>
+        function loadTabContent(url) {
+            $.ajax({
+                url: url,
+                success: function(data) {
+                    $('#tabContent').html(data);
+                }
+            });
+        }
+    </script>
+
+</th:block>
+
+</body>
+</html>

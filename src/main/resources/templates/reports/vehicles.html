@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+<body>
+
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header"><i class="fa fa fa-bars"></i> Vehicle Reports</h3>
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home"></i><a href="/index">Home</a></li>
+                    <li><i class="fa fa-bars"></i><a href="/reports">Reports Home</a></li>
+                    <li><i class="fa fa-square-o"></i>Vehicle Reports</li>
+                </ol>
+            </div>
+        </div>
+        <div style="width: 100%;">
+            <section class="panel border-top">
+                <div class="panel-heading" style="padding: 10px">
+                    Vehicle Reports by Year for 2024
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+
+
+                        <div class="col-lg-14">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    Bar
+                                </header>
+                                <div class="panel-body text-center">
+                                        <div id="container1"
+                                             style="width: 600px; height: 400px; margin: 0 auto">
+
+                                        </div>
+
+                                    <script
+                                            src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                                    <!-- Latest compiled and minified JavaScript -->
+                                    <script
+                                            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                                    <script src="https://code.highcharts.com/highcharts.js"></script>
+                                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                                    <script th:inline="javascript">
+                                        $(function(){
+                                            Highcharts.chart('container1', {
+                                                chart: {
+                                                    type: 'column'
+                                                },
+                                                title: {
+                                                    text: 'Maintenance Costs'
+                                                },
+                                                subtitle: {
+                                                    text: 'Details'
+                                                },
+                                                xAxis: {
+                                                    categories: [[${keySet}]],
+                                                    crosshair: true
+                                                },
+                                                yAxis: {
+                                                    min: 0,
+                                                    max:60000,
+                                                    title: {
+                                                        text: 'Costs'
+                                                    }
+                                                },
+                                                tooltip: {
+                                                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                                        '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                                                    footerFormat: '</table>',
+                                                    shared: true,
+                                                    useHTML: true
+                                                },
+                                                plotOptions: {
+                                                    column: {
+                                                        pointPadding: 0.2,
+                                                        borderWidth: 0
+                                                    }
+                                                },
+                                                series: [{
+                                                    name: 'Vehicle Types',
+                                                    data: [[${values}]]
+                                                }]
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row">
+
+
+                        <div class="col-lg-6">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    Pie
+                                </header>
+                                <div class="panel-body text-center">
+                                    <div id="container2"
+                                         style="width: 400px; height: 400px; margin: 0 auto">
+
+                                    </div>
+
+                                   <script th:inline="javascript">
+                                    Highcharts.chart('container2', {
+                                        chart : {
+                                            type : 'pie',
+                                            options3d : {
+                                                enabled : true,
+                                                alpha : 50,
+                                                beta : 0
+                                            }
+                                        },
+                                        title : {
+                                            text : 'Result Data'
+                                        },
+                                        tooltip : {
+                                            pointFormat : '{series.name}: <b>{point.percentage:.1f}%</b>'
+                                        },
+                                        plotOptions : {
+                                            pie : {
+                                                allowPointSelect : true,
+                                                cursor : 'pointer',
+                                                depth : 35,
+                                                dataLabels : {
+                                                    enabled : true,
+                                                    format : '{point.name}'
+                                                }
+                                            }
+                                        },
+                                        series : [ {
+                                            type : 'pie',
+                                            name : 'Ratio',
+                                            data : [ [ 'MaintenanceCost', [[${pass}]] ], [ 'FuelCost', [[${fail}]] ]  ]
+                                        } ]
+                                    });
+                                </script>
+                                </div>
+
+
+
+                            </section>
+                        </div>
+                        <div class="col-lg-6">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    Bar
+                                </header>
+                                <div class="panel-body text-center">
+                                    <div id="container3"
+                                         style="width: 400px; height: 400px; margin: 0 auto">
+
+                                    </div>
+
+                                    <script
+                                            src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                                    <!-- Latest compiled and minified JavaScript -->
+                                    <script
+                                            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                                    <script src="https://code.highcharts.com/highcharts.js"></script>
+                                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                                    <script th:inline="javascript">
+                                        $(function(){
+                                            Highcharts.chart('container3', {
+                                                chart: {
+                                                    type: 'column'
+                                                },
+                                                title: {
+                                                    text: 'Fuel Costs'
+                                                },
+                                                subtitle: {
+                                                    text: 'Details'
+                                                },
+                                                xAxis: {
+                                                    categories: [[${keySetFuel}]],
+                                                    crosshair: true
+                                                },
+                                                yAxis: {
+                                                    min: 0,
+                                                    max:60000,
+                                                    title: {
+                                                        text: 'Costs'
+                                                    }
+                                                },
+                                                tooltip: {
+                                                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                                        '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                                                    footerFormat: '</table>',
+                                                    shared: true,
+                                                    useHTML: true
+                                                },
+                                                plotOptions: {
+                                                    column: {
+                                                        pointPadding: 0.2,
+                                                        borderWidth: 0
+                                                    }
+                                                },
+                                                series: [{
+                                                    name: 'Vehicle Types',
+                                                    data: [[${valuesFuel}]]
+                                                }]
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer" style="padding: 10px">
+                    End of Reports - The Genius Apps
+                </div>
+            </section>
+        </div>
+    </section>
+</div>
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        var maintenance = [[${maintenance}]]
+    </script>
+    <script th:src="@{/js/vehicle.js}"></script>
+</th:block>
+</body>
+</html>

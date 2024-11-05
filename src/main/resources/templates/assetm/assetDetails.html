@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+
+<body>
+
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header"><i class="fa fa fa-bars"></i> Computer Details</h3>
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home"></i><a href="/index">Home</a></li>
+                    <li><i class="fa fa-bars"></i><a href="/assetm/assets">Computer List</a></li>
+                    <li><i class="fa fa-square-o"></i>Computer Details</li>
+                </ol>
+            </div>
+        </div>
+        <div class="container" style="width: 70%">
+            <form class="form-horizontal"  method="post">
+                <div class="row justify-content-center white-bg">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            New Asset Record
+                        </header>
+                        <br>
+                        <div class="col-lg-6">
+                            <section class="panel">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Id: </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" th:value="${asset.asset_id}" name="asset_id"
+                                               readonly placeholder="Id">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Computer Category: </label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="asset_category_id" >
+                                            <option th:value="${null}" >-SELECT-</option>
+                                            <option th:each="assetCategory : ${assetCategoryList}"
+                                                    th:selected="${assetCategory.asset_category_id} == ${asset.assetCategoryid}?True:False"
+                                                    th:value="${assetCategory.asset_category_id}"
+                                                    th:text="${assetCategory.asset_category_name}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtVehicleNameAdd" class="col-sm-4 col-form-label">Asset
+                                        Name: </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="txtVehicleNameAdd" name="asset_name"
+                                               readonly         th:value="${asset.asset_name}"      placeholder="Asset name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtVehicleNumberAdd" class="col-sm-4 col-form-label">Computer
+                                        Model: </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="txtVehicleNumberAdd"
+                                               readonly           th:value="${asset.asset_model}"         name="asset_model" placeholder="Asset model" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="txtRegistrationDateAdd" class="col-sm-4 col-form-label">
+                                        Serial Number: </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="txtRegistrationDateAdd"
+                                               readonly               th:value="${asset.asset_serial_number}"               name="asset_serial_number" placeholder="Asset Serial Number" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="txtDescriptionAdd" class="col-sm-4 col-form-label">Description: </label>
+                                    <div class="col-sm-6">
+                                        <textarea type="text" class="form-control" id="txtDescriptionAdd"
+                                                  readonly                 th:value="${asset.asset_description}"     name="asset_description" placeholder="Description" rows="2"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="txtAcquisitionDateAdd" class="col-sm-4 col-form-label">Acquisition
+                                        Date: </label>
+                                    <div class="col-sm-6">
+                                        <input type="date" class="form-control" id="txtAcquisitionDateAdd"
+                                               readonly               th:value="${asset.dateOfAcquisition}"     name="dateOfAcquisition" placeholder="Acquisition date" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="txtRegistrationDateAdd" class="col-sm-4 col-form-label">
+                                        Capitalization Amount: </label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="dlCurrentStatusAdd"
+                                               readonly              th:value="${asset.capitalizationAmount}"     name="capitalizationAmount" placeholder="Capitalization Amount" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Revaluation Amount: </label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="ddlPowerAdd" name="revaluationAmount"
+                                               readonly                   th:value="${asset.revaluationAmount}"  placeholder="Revaluation Amount" required>
+                                    </div>
+                                </div>
+
+
+                            </section>
+                        </div>
+                        <div class="col-lg-6">
+                            <section class="panel">
+                                <div class="form-group row">
+                                    <label for="txtVehicleNumberAdd" class="col-sm-4 col-form-label">IFMIS
+                                        NUMBER: </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="txtVehicleNumberAdd"
+                                               readonly                        th:value="${asset.ifmisNumber}"      name="ifmisNumber" placeholder="IFMIS Number">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="txtRegistrationDateAdd" class="col-sm-4 col-form-label">
+                                        GRZ Number: </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="txtRegistrationDateAdd"
+                                               readonly                  th:value="${asset.grzNumber}"     name="grzNumber" placeholder="GRZ Number">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="txtFuelCapacityAdd" class="col-sm-4 col-form-label">Fair
+                                        Value: </label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="txtfuelCapacityAdd"
+                                               readonly                    th:value="${asset.fairValue}"      name="fairValue" placeholder="Fair Value">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Use Full Life:  </label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="txtNetWeightAdd" name="useFullLife"
+                                               readonly                    th:value="${asset.useFullLife}"      placeholder="UseFull Life">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Disposal Amount:  </label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="txtRemarksAdd" name="disposalAmount"
+                                               readonly                   th:value="${asset.disposalAmount}"      placeholder="Disposal Amount">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtAcquisitionDateAdd" class="col-sm-4 col-form-label">Disposal
+                                        Date: </label>
+                                    <div class="col-sm-6">
+                                        <input type="date" class="form-control" id="txtAcquisiionDateAdd"
+                                               readonly                    th:value="${asset.disposalDate}"     name="disposalDate" placeholder="Disposal date">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Depreciation Amount:  </label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="txtRemaksAdd" name="depreciationAmount"
+                                               readonly                    th:value="${asset.depreciationAmount}"     placeholder="Depreciation Amount">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Net Book Value:  </label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="ttRemaksAdd" name="netBookValue"
+                                               readonly                    th:value="${asset.netBookValue}"      placeholder="Net Book Value">
+                                    </div>
+                                </div>
+
+
+
+                            </section>
+                        </div>
+                        <div class="col-lg-6">
+                            <section class="panel">
+
+                            </section>
+                        </div>
+                    </section>
+                </div>
+                <br>
+                <div class="row white-bg">
+                    <div class="panel-body">
+
+                        <a href="/assetm/assets" class="btn  btn-warning">
+                            Exit
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>
