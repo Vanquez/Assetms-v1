@@ -2,6 +2,44 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="_layout">
+<head>
+    <style>
+        /* Active button color */
+   .btn.active {
+       background-color: #007bff; /* Primary color for the active button */
+       border-color: #007bff;
+       color: white;
+   }
+
+   /* Inactive button color */
+   .btn.inactive {
+       background-color: #e0e0e0; /* Grey background for inactive buttons */
+       border-color: #e0e0e0;
+       color: black; /* Text color for inactive buttons */
+   }
+
+   /* Hover effect for buttons */
+   .btn:hover {
+       background-color: #0056b3; /* Darker blue on hover for active button */
+       color: white;
+   }
+
+   .inactive:hover {
+       background-color: #d6d6d6; /* Slightly darker grey on hover for inactive buttons */
+       color: black;
+   }
+
+   /* Remove list styling */
+   .breadcrumb li {
+       list-style-type: none;
+   }
+
+   /* Spacing between buttons */
+   .breadcrumb li a {
+       margin-right: 5px;
+   }
+    </style>
+</head>
 
 <body>
 
@@ -9,12 +47,20 @@
     <section class="wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i> Asset Categories</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="/asset">Asset Home</a></li>
-                    <li><i class="fa fa-bars"></i><a href="/assetm/assets">AssetCategory List</a></li>
+                <p th:text="${message}"></p>
+                <ol class="breadcrumb" style="height: 90px; padding: 10px; display: flex; flex-wrap: wrap; gap: 5px;">
+                    <li>
+                        <a href="/assetm/assets" class="btn btn-primary inactive" style="font-weight: bold;">Computers</a>
+                    </li>
+                    <li>
+                        <a href="/assetm/assetcategories" class="btn btn-secondary active" style="font-weight: bold;">Computer Categories</a>
+                    </li>
 
-                    <li><i class="fa fa-square-o"></i>Asset Categories</li>
+                    <li>
+                        <a href="/assetm/depreciatedassets" class="btn btn-secondary inactive" style="font-weight: bold;">Depreciated Computers</a>
+                    </li>
+
+
                 </ol>
             </div>
         </div>

@@ -7,17 +7,8 @@
 
 <div layout:fragment="content">
     <section class="wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i>Employee Edit</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="/hr">HR Home</a></li>
-                    <li><i class="fa fa-bars"></i><a href="/hr/employees">Employees List</a></li>
-                    <li><i class="fa fa-square-o"></i>Employee Edit</li>
-                </ol>
-            </div>
-        </div>
-        <div class="container" style="width: 70%">
+
+        <div class="container" style="width: 100%">
             <form class="form-horizontal" th:action="@{/hr/employeess}" method="post">
                 <div class="row justify-content-center white-bg">
                     <section class="panel">
@@ -25,19 +16,19 @@
                             Edit Employee Record
                         </header>
                         <br>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <section class="panel">
-                                <div class="form-group row">
+                                <div class="form-group row" hidden="hidden">
                                     <label class="col-sm-4 col-form-label">Id: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:value="${employee.id}" name="id"
-                                               readonly placeholder="Id">
+                                               readonly placeholder="Id" hidden="hidden" style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="ddlTitleEdit" class="col-sm-4 col-form-label">Title: </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" id="ddlTitleEdit" name="title">
+                                        <select class="form-control" id="ddlTitleEdit" name="title" style="width: 200px;">
                                             <option th:value="${null}">-SELECT-</option>
                                             <option value="Mr." th:selected="${employee.title} == 'Mr.'">Mr.</option>
                                             <option value="Ms." th:selected="${employee.title} == 'Ms.'">Ms.</option>
@@ -48,7 +39,7 @@
                                     <label class="col-sm-4 col-form-label">Initials: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:value="${employee.initials}"
-                                               name="initials" placeholder="Initials">
+                                               name="initials" placeholder="Initials" style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -56,85 +47,62 @@
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control"
                                                th:value="${employee.socialSecurityNumber}" name="socialSecurityNumber"
-                                               placeholder="Social Security Number">
+                                               placeholder="Social Security Number" style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Firstname: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:value="${employee.firstname}"
-                                               name="firstname" placeholder="Firstname">
+                                               name="firstname" placeholder="Firstname" style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Lastname: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:value="${employee.lastname}"
-                                               name="lastname" placeholder="Lastname">
+                                               name="lastname" placeholder="Lastname" style="width: 200px;">
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Othername: </label>
+                                    <label for="ddlEmployeeTypeEdit" class="col-sm-4 col-form-label">Employee
+                                        Type</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" th:value="${employee.othername}"
-                                               name="othername" placeholder="Othername">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="ddlGenderEdit" class="col-sm-4 col-form-label">Gender: </label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlGenderEdit" name="gender">
+                                        <select class="form-control" id="ddlEmployeeTypeEdit" name="employeetypeid" style="width: 200px;">
                                             <option th:value="${null}">-SELECT-</option>
-                                            <option value="MALE" th:selected="${employee.gender} == 'MALE'">MALE
-                                            </option>
-                                            <option value="FEMALE" th:selected="${employee.gender} == 'FEMALE'">FEMALE
+                                            <option th:each="employeeType : ${employeeTypes}"
+                                                    th:selected="${employeeType.id} == ${employee.employeetypeid}?True:False"
+                                                    th:value="${employeeType.id}"
+                                                    th:text="${employeeType.description}">
                                             </option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="ddlNationalityEdit"
-                                           class="col-sm-4 col-form-label">Nationality: </label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlNationalityEdit" name="countryid">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="country : ${countries}"
-                                                    th:selected="${country.id} == ${employee.countryid}?True:False"
-                                                    th:value="${country.id}"
-                                                    th:text="${country.description}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Address</label>
-                                    <div class="col-sm-6">
-                                        <textarea class="form-control" th:field="${employee.address}" name="address"
-                                                  placeholder="Address" rows="2"></textarea>
-                                    </div>
-                                </div>
+
+
                             </section>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <section class="panel">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Date of Birth:</label>
                                     <div class="col-sm-6">
                                         <input type="date" class="form-control" th:field="${employee.dateOfBirth}"
-                                               name="dateOfBirth" placeholder="Date of Birth">
+                                               name="dateOfBirth" placeholder="Date of Birth" style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Hire Date:</label>
                                     <div class="col-sm-6">
                                         <input type="date" class="form-control" th:field="${employee.hireDate}"
-                                               name="hireDate" placeholder="Hire Date">
+                                               name="hireDate" placeholder="Hire Date" style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="ddlStateEdit" class="col-sm-4 col-form-label">State/Province: </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" id="ddlStateEdit" name="stateid">
+                                        <select class="form-control" id="ddlStateEdit" name="stateid" style="width: 200px;">
                                             <option th:value="${null}">-SELECT-</option>
                                             <option th:each="state : ${states}"
                                                     th:selected="${state.id} == ${employee.stateid}?True:False"
@@ -148,28 +116,70 @@
                                     <label class="col-sm-4 col-form-label">City: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:value="${employee.city}" name="city"
-                                               placeholder="City">
+                                               placeholder="City" style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Phone: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:value="${employee.phone}"
-                                               name="phone" placeholder="Phone">
+                                               name="phone" placeholder="Phone" style="width: 200px;">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Address</label>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" th:field="${employee.address}" name="address"
+                                                  placeholder="Address" rows="2" style="width: 200px;"></textarea>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </section>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <section class="panel">
+                                <div class="form-group row">
+                                    <label for="ddlGenderEdit" class="col-sm-4 col-form-label">Gender: </label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="ddlGenderEdit" name="gender" style="width: 200px;">
+                                            <option th:value="${null}">-SELECT-</option>
+                                            <option value="MALE" th:selected="${employee.gender} == 'MALE'">MALE
+                                            </option>
+                                            <option value="FEMALE" th:selected="${employee.gender} == 'FEMALE'">FEMALE
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Mobile: </label>
+                                    <label for="ddlNationalityEdit"
+                                           class="col-sm-4 col-form-label">Nationality: </label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" th:value="${employee.mobile}"
-                                               name="mobile" placeholder="Mobile">
+                                        <select class="form-control" id="ddlNationalityEdit" name="countryid" style="width: 200px;">
+                                            <option th:value="${null}">-SELECT-</option>
+                                            <option th:each="country : ${countries}"
+                                                    th:selected="${country.id} == ${employee.countryid}?True:False"
+                                                    th:value="${country.id}"
+                                                    th:text="${country.description}">
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
+
+
+
+
+
                                 <div class="form-group row">
                                     <label for="ddlMaritalStatusEdit" class="col-sm-4 col-form-label">Marital
                                         Status: </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" id="ddlMaritalStatusEdit" name="maritalStatus">
+                                        <select class="form-control" id="ddlMaritalStatusEdit" name="maritalStatus" style="width: 200px;">
                                             <option th:value="${null}">-SELECT-</option>
                                             <option value="Married"
                                                     th:selected="${employee.maritalStatus} == 'Married'">Married
@@ -184,13 +194,13 @@
                                     <label class="col-sm-4 col-form-label">Email</label>
                                     <div class="col-sm-6">
                                         <input type="email" class="form-control" th:value="${employee.email}"
-                                               name="email" placeholder="Email">
+                                               name="email" placeholder="Email" style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="ddlJobTitleEdit" class="col-sm-4 col-form-label">Job Title</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" id="ddlJobTitleEdit" name="jobtitleid">
+                                        <select class="form-control" id="ddlJobTitleEdit" name="jobtitleid" style="width: 200px;">
                                             <option th:value="${null}">-SELECT-</option>
                                             <option th:each="jobTitle : ${jobTitles}"
                                                     th:selected="${jobTitle.id} == ${employee.jobtitleid}?True:False"
@@ -200,34 +210,15 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="ddlEmployeeTypeEdit" class="col-sm-4 col-form-label">Employee
-                                        Type</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlEmployeeTypeEdit" name="employeetypeid">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="employeeType : ${employeeTypes}"
-                                                    th:selected="${employeeType.id} == ${employee.employeetypeid}?True:False"
-                                                    th:value="${employeeType.id}"
-                                                    th:text="${employeeType.description}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
+
                                 <div class="form-group row">
                                     <label for="fupImageEdit" class="col-sm-4 col-form-label">Select Image: </label>
                                     <div class="col-sm-6">
                                         <input type="file" class="form-control-file" id="fupImageEdit" name="photo"
-                                               placeholder="Select File">
+                                               placeholder="Select File" style="width: 200px;">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Username</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" th:value="${employee.username}" name="username"
-                                               placeholder="Username">
-                                    </div>
-                                </div>
+
                             </section>
                         </div>
                     </section>

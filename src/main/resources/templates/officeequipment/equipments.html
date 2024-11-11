@@ -2,17 +2,64 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="_layout">
+<head>
+    <style>
+        /* Active button color */
+   .btn.active {
+       background-color: #007bff; /* Primary color for the active button */
+       border-color: #007bff;
+       color: white;
+   }
+
+   /* Inactive button color */
+   .btn.inactive {
+       background-color: #e0e0e0; /* Grey background for inactive buttons */
+       border-color: #e0e0e0;
+       color: black; /* Text color for inactive buttons */
+   }
+
+   /* Hover effect for buttons */
+   .btn:hover {
+       background-color: #0056b3; /* Darker blue on hover for active button */
+       color: white;
+   }
+
+   .inactive:hover {
+       background-color: #d6d6d6; /* Slightly darker grey on hover for inactive buttons */
+       color: black;
+   }
+
+   /* Remove list styling */
+   .breadcrumb li {
+       list-style-type: none;
+   }
+
+   /* Spacing between buttons */
+   .breadcrumb li a {
+       margin-right: 5px;
+   }
+    </style>
+</head>
 <body>
 
 <div layout:fragment="content">
     <section class="wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i> Office Equipment</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="/index">Home</a></li>
-                    <li><i class="fa fa-bars"></i><a ></a></li>
-                    <li><i class="fa fa-square-o"></i>Equipment List</li>
+                <p th:text="${message}"></p>
+                <ol class="breadcrumb" style="height: 90px; padding: 10px; display: flex; flex-wrap: wrap; gap: 5px;">
+                    <li>
+                        <a href="/officeequipments/equipments" class="btn btn-primary active" style="font-weight: bold;">Office Equipments</a>
+                    </li>
+                    <li>
+                        <a href="/officeequipment/equipmentcategories" class="btn btn-secondary inactive" style="font-weight: bold;">Equipment Categories</a>
+                    </li>
+
+                    <li>
+                        <a href="/assetm/depreciatedassets" class="btn btn-secondary inactive" style="font-weight: bold;">Depreciated Equipments</a>
+                    </li>
+
+
                 </ol>
             </div>
         </div>
@@ -25,9 +72,12 @@
                     <a href="/officeequipment/equipment/export" class="btn btn-primary">
                         Export
                     </a>
-                    <form method="post" enctype="multipart/form-data" th:action="@{/officeequipment/equipment/import}">
-                        <input type="file" name="file"/>
-                        <button type="submit">Import</button>
+
+                    <form method="post" enctype="multipart/form-data" th:action="@{/officeequipment/equipment/import}" style="display: flex; align-items: center;">
+                        <input type="file" name="file" style="margin-right: 10px;"/>
+                        <button type="submit" style="padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            Import
+                        </button>
                     </form>
                 </div>
                 <form th:action="@{/officeequipments/equipments}" >

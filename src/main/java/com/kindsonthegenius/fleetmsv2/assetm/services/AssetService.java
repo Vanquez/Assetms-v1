@@ -173,7 +173,13 @@ public class AssetService {
         LocalDate fiveYearsAgo = LocalDate.now().minusYears(5);
         Date date = Date.from(fiveYearsAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
         List<Asset> oldAssets = assetRepository.findOldAssets(date);
+
         for (Asset asset : oldAssets) {
+            // Check if the asset already exists in the depreciated table
+            if (depreciatedAssetRepository.existsByAssetSerialNumber(asset.getAsset_serial_number())) {
+                continue; // Skip this asset if it has already been migrated
+            }
+
             DepreciatedAsset depreciatedAsset = new DepreciatedAsset();
             depreciatedAsset.setAsset_name(asset.getAsset_name());
             depreciatedAsset.setCreated_at(asset.getCreated_at());
@@ -193,8 +199,11 @@ public class AssetService {
             depreciatedAsset.setDepreciationAmount(asset.getDepreciationAmount());
             depreciatedAsset.setNetBookValue(asset.getNetBookValue());
             // Copy other fields as needed
+
             depreciatedAssetRepository.save(depreciatedAsset);
         }
+
+
 //        assetRepository.deleteOldAssets(date);
 
         System.out.println("Worked");

@@ -5,17 +5,7 @@
 <body>
 <div layout:fragment="content">
     <section class="wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i>Register Equipment</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a >Home</a></li>
-                    <li><i class="fa fa-bars"></i><a >Equipment List</a></li>
-                    <li><i class="fa fa-square-o"></i>Equipment Add</li>
-                </ol>
-            </div>
-        </div>
-        <div class="container" style="width: 90%">
+        <div class="container" style="width: 95%">
             <form class="form-horizontal" th:action="@{/officeequipments/equipments}" th:object="${officeEquipment}" method="post">
                 <div class="row justify-content-center white-bg">
                     <section class="panel">
@@ -23,7 +13,7 @@
                             New Equipment Record
                         </header>
                         <br>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <section class="panel">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Equipment Category: </label>
@@ -82,6 +72,13 @@
                                     </div>
                                 </div>
 
+
+
+                            </section>
+                        </div>
+                        <div class="col-lg-4">
+                            <section class="panel">
+
                                 <div class="form-group row">
                                     <label for="txtRegistrationDateAdd" class="col-sm-4 col-form-label">
                                         Serial Number: </label>
@@ -119,45 +116,6 @@
                                 </div>
 
 
-                            </section>
-                        </div>
-                        <div class="col-lg-6">
-                            <section class="panel">
-
-                                <div class="form-group row">
-                                    <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Use Full Life:  </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control"  id="txtNetWeightAdd" name="useFullLife"
-                                               placeholder="UseFull Life">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Disposal Amount:  </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control"  id="txtRemarksAdd" name="disposalAmount"
-                                               placeholder="Disposal Amount">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="txtAcquisitionDateAdd" class="col-sm-4 col-form-label">Disposal
-                                        Date: </label>
-                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control"  id="txtAcquisiionDateAdd"
-                                               name="disposalDate" placeholder="Disposal date">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="txtRegistrationDateAdd" class="col-sm-4 col-form-label">
-                                        Capitalization Amount: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control"  id="dlCurrentStatusAdd"
-                                               name="capitalizationAmount" placeholder="Capitalization Amount">
-                                    </div>
-                                </div>
-
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Revaluation Amount: </label>
                                     <div class="col-sm-6">
@@ -175,6 +133,23 @@
                                                placeholder="Disposal Amount">
                                     </div>
                                 </div>
+
+
+                            </section>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <section class="panel">
+
+                                <div class="form-group row">
+                                    <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Use Full Life:  </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control"  id="txtNetWeightAdd" name="useFullLife"
+                                               placeholder="UseFull Life">
+                                    </div>
+                                </div>
+
+
 
                                 <div class="form-group row">
                                     <label for="txtAcquisitionDateAdd" class="col-sm-4 col-form-label">Disposal
@@ -206,7 +181,6 @@
                         </div>
                     </section>
                 </div>
-                <br>
                 <div class="row white-bg">
                     <div class="panel-body">
                         <button type="submit" class="btn btn-primary">

@@ -7,17 +7,8 @@
 
 <div layout:fragment="content">
     <section class="wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i> Member Add</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="/index">Home</a></li>
-                    <li><i class="fa fa-bars"></i><a href="">Home</a></li>
-                    <li><i class="fa fa-square-o"></i>Member Add</li>
-                </ol>
-            </div>
-        </div>
-        <div class="container" style="width: 70%">
+
+        <div class="container" style="width: 100%">
             <form class="form-horizontal" th:action="@{/hr/employees}" th:object="${employee}" method="post">
                 <div class="row justify-content-center white-bg">
                     <section class="panel">
@@ -25,12 +16,12 @@
                             New Employee Record
                         </header>
                         <br>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <section class="panel">
                                 <div class="form-group row">
                                     <label for="ddlTitleEdit" class="col-sm-4 col-form-label">Title: </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" id="ddlTitleEdit" name="title" required>
+                                        <select class="form-control" id="ddlTitleEdit" name="title" required style="width: 200px;">
                                             <option th:value="${null}">-SELECT-</option>
                                             <option value="Mr.">Mr.</option>
                                             <option value="Ms.">Ms.</option>
@@ -41,14 +32,14 @@
                                     <label for="txtInitialsEdit" class="col-sm-4 col-form-label">Initials: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="txtInitialsEdit" name="initials"
-                                               placeholder="Initials" pattern="^[A-Z]{1,3}$" title="Please enter 1-3 uppercase letters." required>
+                                               placeholder="Initials" pattern="^[A-Z]{1,3}$" title="Please enter 1-3 uppercase letters." required style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="txtSSNEdit" class="col-sm-4 col-form-label">Social Security No.: </label>
                                     <div class="col-sm-6">                                          205992/77/1
                                         <input type="text" class="form-control" id="txtSSNEdit" th:field="*{socialSecurityNumber}"
-                                               name="socialSecurityNumber" placeholder="Social Security Number" pattern="^\d{6}/\d{2}/\d{1}$" title="Please enter a valid SSN (e.g., 205992/88/2).">
+                                               name="socialSecurityNumber" placeholder="Social Security Number" pattern="^\d{6}/\d{2}/\d{1}$" title="Please enter a valid SSN (e.g., 205992/88/2)." style="width: 200px;">
                                     </div>
                                     <div th:if="${#fields.hasErrors('socialSecurityNumber')}" th:errors="*{socialSecurityNumber}">Social Security Number Error</div>
                                 </div>
@@ -56,56 +47,28 @@
                                     <label for="txtFirstnameEdit" class="col-sm-4 col-form-label">Firstname: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="txtFirstnameEdit" name="firstname"
-                                               placeholder="Firstname" pattern="^[A-Za-z]+$" title="Please enter letters only." required>
+                                               placeholder="Firstname" pattern="^[A-Za-z]+$" title="Please enter letters only." required style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="txtLastnameEdit" class="col-sm-4 col-form-label">Lastname: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="txtLastnameEdit" name="lastname"
-                                               placeholder="Lastname" pattern="^[A-Za-z]+$" title="Please enter letters only.">
+                                               placeholder="Lastname" pattern="^[A-Za-z]+$" title="Please enter letters only." style="width: 200px;">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="txtOthernameEdit" class="col-sm-4 col-form-label">Othername: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtOthernameEdit" name="othername"
-                                               placeholder="Othername" pattern="^[A-Za-z]*$" title="Please enter letters only." >
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="ddlGenderEdit" class="col-sm-4 col-form-label">Gender: </label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlGenderEdit" name="gender" required>
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option value="MALE">MALE</option>
-                                            <option value="FEMALE">FEMALE</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="ddlNationalityEdit" class="col-sm-4 col-form-label">Nationality: </label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlNationalityEdit" name="countryid" required>
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="country : ${countries}"
-                                                    th:value="${country.id}"
-                                                    th:text="${country.description}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtAddressEdit" class="col-sm-4 col-form-label">Address</label>
-                                    <div class="col-sm-6">
-                            <textarea class="form-control" id="txtAddressEdit" name="address"
-                                      placeholder="Address" rows="2" required></textarea>
-                                    </div>
-                                </div>
+<!--                                <div class="form-group row">-->
+<!--                                    <label for="txtOthernameEdit" class="col-sm-4 col-form-label">Othername: </label>-->
+<!--                                    <div class="col-sm-6">-->
+<!--                                        <input type="text" class="form-control" id="txtOthernameEdit" name="othername"-->
+<!--                                               placeholder="Othername" pattern="^[A-Za-z]*$" title="Please enter letters only." >-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
                                 <div class="form-group row">
                                     <label for="ddlEmployeeTypeEdit" class="col-sm-4 col-form-label">Employee Type</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" id="ddlEmployeeTypeEdit" name="employeetypeid" required>
+                                        <select class="form-control" id="ddlEmployeeTypeEdit" name="employeetypeid" required style="width: 200px;">
                                             <option th:value="${null}">-SELECT-</option>
                                             <option th:each="employeeType : ${employeeTypes}"
                                                     th:value="${employeeType.id}"
@@ -114,28 +77,29 @@
                                         </select>
                                     </div>
                                 </div>
+
                             </section>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <section class="panel">
                                 <div class="form-group row">
                                     <label for="txtDateOfBirthEdit" class="col-sm-4 col-form-label">Date of Birth:</label>
                                     <div class="col-sm-6">
                                         <input type="date" class="form-control" id="txtDateOfBirthEdit"
-                                               name="DateOfBirth" placeholder="Date of Birth" required>
+                                               name="DateOfBirth" placeholder="Date of Birth" required style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="txtHireDateEdit" class="col-sm-4 col-form-label">Date:</label>
                                     <div class="col-sm-6">
                                         <input type="date" class="form-control" id="txtHireDateEdit" name="hireDate"
-                                               placeholder="Hire Date" required>
+                                               placeholder="Hire Date" required style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="ddlStateEdit" class="col-sm-4 col-form-label">State/Province: </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" id="ddlStateEdit" name="stateid" required>
+                                        <select class="form-control" id="ddlStateEdit" name="stateid" required style="width: 200px;">
                                             <option th:value="${null}">-SELECT-</option>
                                             <option th:each="state : ${states}"
                                                     th:value="${state.id}"
@@ -148,27 +112,63 @@
                                     <label for="txtCityEdit" class="col-sm-4 col-form-label">City: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="txtCityEdit" name="city"
-                                               placeholder="City" pattern="^[A-Za-z ]+$" title="Please enter letters only." required>
+                                               placeholder="City" pattern="^[A-Za-z ]+$" title="Please enter letters only." required style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="txtPhoneEdit" class="col-sm-4 col-form-label">Phone: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="txtPhoneEdit" name="phone"
-                                               placeholder="Phone" pattern="^\d{10}$" title="Please enter a valid phone number (10 digits)." required>
+                                               placeholder="Phone" pattern="^\d{10}$" title="Please enter a valid phone number (10 digits)." required style="width: 200px;">
+                                    </div>
+                                </div>
+
+
+<!--                                <div class="form-group row">-->
+<!--                                    <label class="col-sm-4 col-form-label">Username</label>-->
+<!--                                    <div class="col-sm-6">-->
+<!--                                        <input class="form-control" name="username" placeholder="Username" pattern="^[A-Za-z0-9-.]{5,15}$" title="Username should be 5-15 characters long and contain only letters and numbers." required>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                                <div class="form-group row">
+                                    <label for="txtAddressEdit" class="col-sm-4 col-form-label">Address</label>
+                                    <div class="col-sm-6">
+                            <textarea class="form-control" id="txtAddressEdit" name="address"
+                                      placeholder="Address" rows="2" required style="width: 200px;"></textarea>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-4">
+                            <section class="panel">
+                                <div class="form-group row">
+                                    <label for="ddlGenderEdit" class="col-sm-4 col-form-label">Gender: </label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="ddlGenderEdit" name="gender" required style="width: 200px;">
+                                            <option th:value="${null}">-SELECT-</option>
+                                            <option value="MALE">MALE</option>
+                                            <option value="FEMALE">FEMALE</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="txtMobileEdit" class="col-sm-4 col-form-label">Mobile: </label>
+                                    <label for="ddlNationalityEdit" class="col-sm-4 col-form-label">Nationality: </label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtMobileEdit" name="mobile"
-                                               placeholder="Mobile" pattern="^\d{10}$" title="Please enter a valid mobile number (10 digits).">
+                                        <select class="form-control" id="ddlNationalityEdit" name="countryid" required style="width: 200px;">
+                                            <option th:value="${null}">-SELECT-</option>
+                                            <option th:each="country : ${countries}"
+                                                    th:value="${country.id}"
+                                                    th:text="${country.description}">
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
+
+
                                 <div class="form-group row">
                                     <label for="ddlMaritalStatusEdit" class="col-sm-4 col-form-label">Marital Status: </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" id="ddlMaritalStatusEdit" name="maritalStatus" required>
+                                        <select class="form-control" id="ddlMaritalStatusEdit" name="maritalStatus" required style="width: 200px;">
                                             <option th:value="${null}">-SELECT-</option>
                                             <option value="Married">Married</option>
                                             <option value="Single">Single</option>
@@ -179,13 +179,13 @@
                                     <label for="txtEmailEdit" class="col-sm-4 col-form-label">Email</label>
                                     <div class="col-sm-6">
                                         <input type="email" class="form-control" id="txtEmailEdit" name="email"
-                                               placeholder="Email" required>
+                                               placeholder="Email" required style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="ddlJobTitleEdit" class="col-sm-4 col-form-label">Job Title</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" id="ddlJobTitleEdit" name="jobtitleid" required>
+                                        <select class="form-control" id="ddlJobTitleEdit" name="jobtitleid" required style="width: 200px;">
                                             <option th:value="${null}">-SELECT-</option>
                                             <option th:each="jobTitle : ${jobTitles}"
                                                     th:value="${jobTitle.id}"
@@ -198,17 +198,13 @@
                                     <label for="fupImageEdit" class="col-sm-4 col-form-label">Select Image: </label>
                                     <div class="col-sm-6">
                                         <input type="file" class="form-control-file" id="fupImageEdit" name="photo"
-                                               placeholder="Select File">
+                                               placeholder="Select File" style="width: 200px;">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Username</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" name="username" placeholder="Username" pattern="^[A-Za-z0-9-.]{5,15}$" title="Username should be 5-15 characters long and contain only letters and numbers." required>
-                                    </div>
-                                </div>
+
                             </section>
                         </div>
+
                     </section>
                 </div>
                 <br>

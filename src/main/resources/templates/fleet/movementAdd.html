@@ -7,16 +7,7 @@
 
 <div layout:fragment="content">
     <section class="wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i>Vehicle Movement Add</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="/fleet">Fleet Home</a></li>
-                    <li><i class="fa fa-bars"></i><a href="/fleet/movements">Vehicle Movement List</a></li>
-                    <li><i class="fa fa-square-o"></i>Vehicle Movement Add</li>
-                </ol>
-            </div>
-        </div>
+
         <div class="container" style="width: 70%">
             <form class="form-horizontal" th:action="@{/fleet/movements}" method="post">
                 <div class="row justify-content-center white-bg">
@@ -30,13 +21,13 @@
                                 <div class="form-group row">
                                     <label for="idAdd" class="col-sm-4 col-form-label">Id:</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="idAdd"  disabled>
+                                        <input type="text" class="form-control" id="idAdd"  disabled style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="ddlVehicleAdd" class="col-form-label col-sm-4">Vehicle: </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" id="ddlVehicleAdd" name="vehicleid" required>
+                                        <select class="form-control" id="ddlVehicleAdd" name="vehicleid" required style="width: 200px;">
                                             <option th:value="${null}">-SELECT-</option>
                                             <option th:each="vehicle : ${vehicles}"
                                                     th:value="${vehicle.id}"
@@ -48,13 +39,13 @@
                                 <div class="form-group row">
                                     <label  class="col-form-label col-sm-4">Departed from: </label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="remarksAdd" name="locationid11" pattern="[A-Za-z\s]{2,}" required >
+                                        <input type="text" class="form-control" id="remarksAdd" name="locationid11" pattern="[A-Za-z\s]{2,}" required style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="date1Add" class="col-form-label col-sm-4">Departure Date:</label>
                                     <div class="col-sm-6">
-                                        <input type="date" class="form-control" id="date1Add" name="date1" required>
+                                        <input type="date" class="form-control" id="date1Add" name="date1" required style="width: 200px;">
                                     </div>
                                 </div>
                             </section>
@@ -64,19 +55,19 @@
                                 <div class="form-group row">
                                     <label  class="col-form-label col-sm-4">Arrived at: </label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="remarksAdd" name="locationid22" pattern="[A-Za-z\s]{2,}" required >
+                                        <input type="text" class="form-control" id="remarksAdd" name="locationid22" pattern="[A-Za-z\s]{2,}" required style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="date2Add" class="col-form-label col-sm-4">Arrival date:</label>
                                     <div class="col-sm-6">
-                                        <input type="date" class="form-control" id="date2Add" name="date2" required>
+                                        <input type="date" class="form-control" id="date2Add" name="date2" required style="width: 200px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="remarksAdd" class="col-form-label col-sm-4">Remarks:</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="remarksAdd" name="remarks" pattern=".{2,}">
+                                        <input type="text" class="form-control" id="remarksAdd" name="remarks" pattern=".{2,}" style="width: 200px;">
                                     </div>
                                 </div>
                             </section>
