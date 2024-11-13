@@ -1,10 +1,10 @@
 package com.kindsonthegenius.fleetmsv2.officeequipments.controllers;
 
 import com.kindsonthegenius.fleetmsv2.assetm.models.Asset;
+import com.kindsonthegenius.fleetmsv2.assetm.models.CSVDepreciatedAssets;
 import com.kindsonthegenius.fleetmsv2.assetm.models.CSVHelperAssetComputer;
-import com.kindsonthegenius.fleetmsv2.officeequipments.models.CSVHelperEquipment;
-import com.kindsonthegenius.fleetmsv2.officeequipments.models.OfficeEquipment;
-import com.kindsonthegenius.fleetmsv2.officeequipments.models.OfficeEquipmentCategory;
+import com.kindsonthegenius.fleetmsv2.assetm.models.DepreciatedAsset;
+import com.kindsonthegenius.fleetmsv2.officeequipments.models.*;
 import com.kindsonthegenius.fleetmsv2.officeequipments.services.ExcelEquipmentService;
 import com.kindsonthegenius.fleetmsv2.officeequipments.services.OfficeEquipmentCategoryService;
 import com.kindsonthegenius.fleetmsv2.officeequipments.services.OfficeEquipmentService;
@@ -35,6 +35,8 @@ public class OfficeEquipmentController {
 
      @Autowired
      private ExcelEquipmentService excelEquipmentService;
+
+
 
 
      public Model addModelAttributes(Model model){
@@ -164,6 +166,47 @@ public class OfficeEquipmentController {
             model.addAttribute("message", "Failed to upload file. Please try again.");
         }
         return "redirect:/officeequipments/equipments";
+    }
+
+    // Review assets page
+    @GetMapping("/officeequipment/depreciatedequipment")
+    public String findAllDepreciatedAssets(Model model, String keyword){
+        addModelAttributes(model);
+        officeEquipmentService.migrateAssets();
+        List<DepreciatedOfficeEquipment> asset;
+        try {
+            if (keyword == null){
+                asset = officeEquipmentService.findDepreciatedAssest();
+            } else {
+                asset = officeEquipmentService.findByKeywordDepreciatedAsset(keyword);
+
+            }
+            model.addAttribute("depreciateAssets",asset);
+            System.out.println(asset);
+            System.out.println(keyword);
+        } catch (Exception e){
+            // Handle the exception, for example by logging it and setting an empty list or error message
+            System.err.println("An error occurred while fetching employees:" + e.getMessage());
+            asset = new ArrayList<>(); // or handle
+            model.addAttribute("depreciateAssets", asset);
+            model.addAttribute("errorMessage", "An error occurred while fetching employees. Please try again later");
+        }
+        return "/officeequipment/depreciatedequipments";
+    }
+
+    @GetMapping("/depreciated/equipment/export")
+    public ResponseEntity<Resource> exportDepreciatedAssetToCsv() throws IOException {
+        String filename = "depreciatedEquipment.csv";
+
+        List<DepreciatedOfficeEquipment> depreciatedAssets = officeEquipmentService.findDepreciatedAssest();
+        ByteArrayInputStream inputStream = CSVDepreciatedEquipment.assetComputerToCSV(depreciatedAssets);
+
+        InputStreamResource file = new InputStreamResource(inputStream);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+                .contentType(org.springframework.http.MediaType.parseMediaType("application/csv"))
+                .body(file);
     }
 
 }

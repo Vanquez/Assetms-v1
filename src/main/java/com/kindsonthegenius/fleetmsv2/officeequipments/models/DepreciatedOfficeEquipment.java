@@ -16,6 +16,7 @@ import java.util.Date;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class DepreciatedOfficeEquipment extends CommonObject {
 
+    private String name;
     private String ifmisNumber;
     private String grzNumber;
     private Date dateOfAcquisition;

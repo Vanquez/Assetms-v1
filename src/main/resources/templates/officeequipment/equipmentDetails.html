@@ -2,35 +2,32 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="_layout">
-
 <body>
-
 <div layout:fragment="content">
     <section class="wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i> Equipment Edit</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="/index">Equipment Home</a></li>
-                    <li><i class="fa fa-bars"></i><a href="/officeequipments/equipments">Equipment List</a></li>
-                    <li><i class="fa fa-square-o"></i>Equipment Edit</li>
-                </ol>
-            </div>
-        </div>
-        <div class="container" style="width: 70%">
-            <form class="form-horizontal"   method="post">
+
+        <div class="container" style="width: 95%">
+            <form class="form-horizontal" th:action="@{/officeequipments/equipmentss}"  method="post">
                 <div class="row justify-content-center white-bg">
                     <section class="panel">
                         <header class="panel-heading">
-                            New Equipment Record
+                            Equipment Record Details
                         </header>
                         <br>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <section class="panel">
+                                <div class="form-group row" hidden="hidden">
+                                    <label for="txtVehicleNameAdd" class="col-sm-4 col-form-label">Equipment
+                                        Name: </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" th:field="${officeEquipment.id}"  id="txtVehicleNameAdd" name="name"
+                                               placeholder="Equipment Name" readonly style="width: 200px;" >
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Equipment Category: </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="officeEquipmentCategory_id" >
+                                        <select class="form-control" name="officeEquipmentCategory_id" style="width: 200px;" readonly>
                                             <option th:value="${null}">-SELECT-</option>
                                             <option th:each="assetCategory : ${assetCategoryList}"
                                                     th:selected="${assetCategory.officeEquipmentCategory_id} == ${officeEquipment.officeEquipmentCategory_id}?True:False"
@@ -40,12 +37,13 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label for="txtVehicleNameAdd" class="col-sm-4 col-form-label">Equipment
                                         Name: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="${officeEquipment.name}"  id="txtVehicleNameAdd" name="name"
-                                               placeholder="Equipment Name" readonly>
+                                               placeholder="Equipment Name" style="width: 200px;" readonly>
                                     </div>
                                 </div>
 
@@ -54,7 +52,7 @@
                                         NUMBER: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="${officeEquipment.ifmisNumber}" id="txtVehicleNumberAdd"
-                                               name="ifmisNumber" placeholder="IFMIS Number" readonly>
+                                               name="ifmisNumber" placeholder="IFMIS Number" style="width: 200px;" readonly>
                                     </div>
                                 </div>
 
@@ -63,7 +61,7 @@
                                         GRZ Number: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="${officeEquipment.grzNumber}"   id="txtRegistrationDateAdd"
-                                               name="grzNumber" placeholder="GRZ Number" readonly>
+                                               name="grzNumber" placeholder="GRZ Number" style="width: 200px;" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -71,7 +69,7 @@
                                         Date: </label>
                                     <div class="col-sm-6">
                                         <input type="date" class="form-control" th:field="${officeEquipment.dateOfAcquisition}" id="txtAcquisitionDateAdd"
-                                               name="dateOfAcquisition" placeholder="Acquisition date" readonly>
+                                               name="dateOfAcquisition" placeholder="Acquisition date" style="width: 200px;" readonly>
                                     </div>
                                 </div>
 
@@ -79,33 +77,51 @@
                                     <label for="txtDescriptionAdd" class="col-sm-4 col-form-label">Equipment Description: </label>
                                     <div class="col-sm-6">
                                         <textarea type="text" class="form-control" th:field="${officeEquipment.description}" id="txtDescriptionAdd"
-                                                  name="description" placeholder="Description" rows="2" readonly></textarea>
+                                                  name="description" placeholder="Description" rows="2" style="width: 200px;" readonly></textarea>
                                     </div>
                                 </div>
+
+
+
+                                <!--                                <div class="form-group row">-->
+                                <!--                                    <label for="txtRegistrationDateAdd" class="col-sm-4 col-form-label">-->
+                                <!--                                        Capitalization Amount: </label>-->
+                                <!--                                    <div class="col-sm-6">-->
+                                <!--                                        <input type="text" class="form-control" th:field="${officeEquipment.capitalizationAmount}" id="dlCurrentStatusAdd"-->
+                                <!--                                               name="capitalizationAmount" placeholder="Capitalization Amount">-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+
+                                <!--                                <div class="form-group row">-->
+                                <!--                                    <label class="col-sm-4 col-form-label">Revaluation Amount: </label>-->
+                                <!--                                    <div class="col-sm-6">-->
+                                <!--                                        <input type="text" class="form-control" th:field="${officeEquipment.revaluationAmount}" id="ddlPowerAdd" name="revaluationAmount"-->
+                                <!--                                               placeholder="Revaluation Amount">-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+
+
+                            </section>
+                        </div>
+                        <div class="col-lg-4">
+                            <section class="panel">
 
                                 <div class="form-group row">
                                     <label for="txtRegistrationDateAdd" class="col-sm-4 col-form-label">
                                         Serial Number: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="${officeEquipment.serialNumber}" id="ddlCurretStatusAdd"
-                                               name="serialNumber" placeholder="Serial Number" readonly>
+                                               name="serialNumber" placeholder="Serial Number" style="width: 200px;" readonly>
                                     </div>
                                 </div>
+
 
                                 <div class="form-group row">
                                     <label for="txtRegistrationDateAdd" class="col-sm-4 col-form-label">
                                         Capitalization Amount: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="${officeEquipment.capitalizationAmount}" id="dlCurrentStatusAdd"
-                                               name="capitalizationAmount" placeholder="Capitalization Amount" readonly>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Revaluation Amount: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" th:field="${officeEquipment.revaluationAmount}" id="ddlPowerAdd" name="revaluationAmount"
-                                               placeholder="Revaluation Amount" readonly>
+                                               name="capitalizationAmount" placeholder="Capitalization Amount" style="width: 200px;" readonly>
                                     </div>
                                 </div>
 
@@ -114,47 +130,7 @@
                                         Value: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="${officeEquipment.fairValue}" id="txtfuelCapacityAdd"
-                                               name="fairValue" placeholder="Fair Value" readonly>
-                                    </div>
-                                </div>
-
-
-                            </section>
-                        </div>
-                        <div class="col-lg-6">
-                            <section class="panel">
-
-                                <div class="form-group row">
-                                    <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Use Full Life:  </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" th:field="${officeEquipment.useFullLife}" id="txtNetWeightAdd" name="useFullLife"
-                                               placeholder="UseFull Life" readonly>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Disposal Amount:  </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" th:field="${officeEquipment.disposalAmount}" id="txtRemarksAdd" name="disposalAmount"
-                                               placeholder="Disposal Amount" readonly>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="txtAcquisitionDateAdd" class="col-sm-4 col-form-label">Disposal
-                                        Date: </label>
-                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" th:field="${officeEquipment.disposalDate}" id="txtAcquisiionDateAdd"
-                                               name="disposalDate" placeholder="Disposal date" readonly>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="txtRegistrationDateAdd" class="col-sm-4 col-form-label">
-                                        Capitalization Amount: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" th:field="${officeEquipment.capitalizationAmount}" id="dlCurrentStatusAdd"
-                                               name="capitalizationAmount" placeholder="Capitalization Amount" readonly>
+                                               name="fairValue" placeholder="Fair Value" style="width: 200px;" readonly>
                                     </div>
                                 </div>
 
@@ -162,7 +138,7 @@
                                     <label class="col-sm-4 col-form-label">Revaluation Amount: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="${officeEquipment.revaluationAmount}" id="ddlPowerAdd" name="revaluationAmount"
-                                               placeholder="Revaluation Amount" readonly>
+                                               placeholder="Revaluation Amount" style="width: 200px;" readonly>
                                     </div>
                                 </div>
 
@@ -172,16 +148,43 @@
                                     <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Disposal Amount:  </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="${officeEquipment.disposalAmount}" id="txtRemarksAdd" name="disposalAmount"
-                                               placeholder="Disposal Amount" readonly>
+                                               placeholder="Disposal Amount" style="width: 200px;" readonly>
                                     </div>
                                 </div>
+
+
+
+                            </section>
+                        </div>
+                        <div class="col-lg-4">
+                            <section class="panel">
+
+                                <div class="form-group row">
+                                    <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Use Full Life:  </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" th:field="${officeEquipment.useFullLife}" id="txtNetWeightAdd" name="useFullLife"
+                                               placeholder="UseFull Life" style="width: 200px;" readonly>
+                                    </div>
+                                </div>
+
 
                                 <div class="form-group row">
                                     <label for="txtAcquisitionDateAdd" class="col-sm-4 col-form-label">Disposal
                                         Date: </label>
                                     <div class="col-sm-6">
                                         <input type="date" class="form-control" th:field="${officeEquipment.disposalDate}" id="txtAcquisiionDateAdd"
-                                               name="disposalDate" placeholder="Disposal date" readonly>
+                                               name="disposalDate" placeholder="Disposal date" style="width: 200px;" readonly>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group row">
+                                    <label for="txtAcquisitionDateAdd" class="col-sm-4 col-form-label">Disposal
+                                        Date: </label>
+                                    <div class="col-sm-6">
+                                        <input type="date" class="form-control" th:field="${officeEquipment.disposalDate}" id="txtAcquisiionDateAdd"
+                                               name="disposalDate" placeholder="Disposal date" style="width: 200px;" readonly>
                                     </div>
                                 </div>
 
@@ -190,7 +193,7 @@
                                     <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Depreciation Amount:  </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="${officeEquipment.depreciationAmount}" id="txtRemaksAdd" name="depreciationAmount"
-                                               placeholder="Depreciation Amount" readonly>
+                                               placeholder="Depreciation Amount" style="width: 200px;" readonly>
                                     </div>
                                 </div>
 
@@ -198,7 +201,7 @@
                                     <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Net Book Value:  </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="${officeEquipment.netBookValue}" id="ttRemaksAdd" name="netBookValue"
-                                               placeholder="Net Book Value" readonly>
+                                               placeholder="Net Book Value" style="width: 200px;" readonly>
                                     </div>
 
                                 </div>
@@ -206,12 +209,9 @@
                         </div>
                     </section>
                 </div>
-                <br>
                 <div class="row white-bg">
                     <div class="panel-body">
-                        <button type="submit" class="btn btn-primary">
-                            Save
-                        </button>
+
                         <a href="/officeequipments/equipments" class="btn  btn-warning">
                             Exit
                         </a>
@@ -222,5 +222,18 @@
     </section>
 </div>
 
+<script th:inline="javascript">
+    // JavaScript to show/hide fields based on selected option
+    document.getElementById("options").addEventListener("change", function() {
+        var selectedOption = this.value;
+        if (selectedOption === "option1") {
+            document.getElementById("option1Fields").style.display = "block";
+            document.getElementById("option2Fields").style.display = "none";
+        } else if (selectedOption === "option2") {
+            document.getElementById("option1Fields").style.display = "none";
+            document.getElementById("option2Fields").style.display = "block";
+        }
+    });
+</script>
 </body>
 </html>

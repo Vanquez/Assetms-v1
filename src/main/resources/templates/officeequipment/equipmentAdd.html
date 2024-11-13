@@ -18,7 +18,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Equipment Category: </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="officeEquipmentCategory_id">
+                                        <select class="form-control" name="officeEquipmentCategory_id" style="width: 200px;">
                                             <option th:value="${null}">-SELECT-</option>
                                             <option th:each="assetCategory : ${assetCategoryList}"
                                                     th:value="${assetCategory.officeEquipmentCategory_id}"
@@ -32,7 +32,7 @@
                                         Name: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control"  id="txtVehicleNameAdd" name="name"
-                                               placeholder="Equipment Name">
+                                               placeholder="Equipment Name" style="width: 200px;">
                                     </div>
                                 </div>
 
@@ -41,7 +41,7 @@
                                         NUMBER: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="*{ifmisNumber}" id="txtVehicleNumberAdd"
-                                               name="ifmisNumber" placeholder="IFMIS Number">
+                                               name="ifmisNumber" placeholder="IFMIS Number" style="width: 200px;">
                                     </div>
                                     <div th:if="${#fields.hasErrors('ifmisNumber')}" th:errors="*{ifmisNumber}">IFMIS Number Error</div>
                                 </div>
@@ -51,7 +51,7 @@
                                         GRZ Number: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="*{grzNumber}"   id="txtRegistrationDateAdd"
-                                               name="grzNumber" placeholder="GRZ Number">
+                                               name="grzNumber" placeholder="GRZ Number" style="width: 200px;">
                                     </div>
                                     <div th:if="${#fields.hasErrors('grzNumber')}" th:errors="*{grzNumber}">GRZ Number Error</div>
                                 </div>
@@ -60,7 +60,7 @@
                                         Date: </label>
                                     <div class="col-sm-6">
                                         <input type="date" class="form-control"  id="txtAcquisitionDateAdd"
-                                               name="dateOfAcquisition" placeholder="Acquisition date">
+                                               name="dateOfAcquisition" placeholder="Acquisition date" style="width: 200px;">
                                     </div>
                                 </div>
 
@@ -68,7 +68,7 @@
                                     <label for="txtDescriptionAdd" class="col-sm-4 col-form-label">Equipment Description: </label>
                                     <div class="col-sm-6">
                                         <textarea type="text" class="form-control"  id="txtDescriptionAdd"
-                                                  name="description" placeholder="Description" rows="2"></textarea>
+                                                  name="description" placeholder="Description" rows="2" style="width: 200px;"></textarea>
                                     </div>
                                 </div>
 
@@ -84,7 +84,7 @@
                                         Serial Number: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" th:field="*{serialNumber}" id="ddlCurretStatusAdd"
-                                               name="serialNumber" placeholder="Serial Number">
+                                               name="serialNumber" placeholder="Serial Number" style="width: 200px;">
                                     </div>
                                     <div th:if="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}">Serial Number Error</div>
                                 </div>
@@ -94,24 +94,17 @@
                                         Capitalization Amount: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control"  id="dlCurrentStatusAdd"
-                                               name="capitalizationAmount" placeholder="Capitalization Amount">
+                                               name="capitalizationAmount" placeholder="Capitalization Amount" style="width: 200px;">
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Revaluation Amount: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control"  id="ddlPowerAdd" name="revaluationAmount"
-                                               placeholder="Revaluation Amount">
-                                    </div>
-                                </div>
 
                                 <div class="form-group row">
                                     <label for="txtFuelCapacityAdd" class="col-sm-4 col-form-label">Fair
                                         Value: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control"  id="txtfuelCapacityAdd"
-                                               name="fairValue" placeholder="Fair Value">
+                                               name="fairValue" placeholder="Fair Value" style="width: 200px;">
                                     </div>
                                 </div>
 
@@ -120,7 +113,7 @@
                                     <label class="col-sm-4 col-form-label">Revaluation Amount: </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control"  id="ddlPowerAdd" name="revaluationAmount"
-                                               placeholder="Revaluation Amount">
+                                               placeholder="Revaluation Amount" style="width: 200px;">
                                     </div>
                                 </div>
 
@@ -130,7 +123,7 @@
                                     <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Disposal Amount:  </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control"  id="txtRemarksAdd" name="disposalAmount"
-                                               placeholder="Disposal Amount">
+                                               placeholder="Disposal Amount" style="width: 200px;">
                                     </div>
                                 </div>
 
@@ -145,7 +138,7 @@
                                     <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Use Full Life:  </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control"  id="txtNetWeightAdd" name="useFullLife"
-                                               placeholder="UseFull Life">
+                                               placeholder="UseFull Life" style="width: 200px;">
                                     </div>
                                 </div>
 
@@ -156,7 +149,7 @@
                                         Date: </label>
                                     <div class="col-sm-6">
                                         <input type="date" class="form-control"  id="txtAcquisiionDateAdd"
-                                               name="disposalDate" placeholder="Disposal date">
+                                               name="disposalDate" placeholder="Disposal date" style="width: 200px;">
                                     </div>
                                 </div>
 
@@ -165,7 +158,7 @@
                                     <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Depreciation Amount:  </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control"  id="txtRemaksAdd" name="depreciationAmount"
-                                               placeholder="Depreciation Amount">
+                                               placeholder="Depreciation Amount" style="width: 200px;">
                                     </div>
                                 </div>
 
@@ -173,7 +166,7 @@
                                     <label for="txtNetWeightAdd" class="col-sm-4 col-form-label">Net Book Value:  </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control"  id="ttRemaksAdd" name="netBookValue"
-                                               placeholder="Net Book Value">
+                                               placeholder="Net Book Value" style="width: 200px;">
                                     </div>
 
                                 </div>
